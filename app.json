@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "crud-gazin",
+    "slug": "crud-gazin",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "crud-gazin"
+}
