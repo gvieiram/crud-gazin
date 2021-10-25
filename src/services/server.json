@@ -1,0 +1,52 @@
+{
+  "developers": [
+    {
+      "id": 1,
+      "nome": "Benjamin Oliver Novaes",
+      "sexo": "M",
+      "idade": 24,
+      "hobby": "Musculação",
+      "datanascimento": "20/05/1997"
+    },
+    {
+      "id": 2,
+      "nome": "André Eduardo Cláudio Barros",
+      "sexo": "M",
+      "idade": 61,
+      "hobby": "Bilhar",
+      "datanascimento": "21/03/1960"
+    },
+    {
+      "id": 3,
+      "nome": "Osvaldo André Luiz",
+      "sexo": "M",
+      "idade": 26,
+      "hobby": "Gamer",
+      "datanascimento": "13/03/1995"
+    },
+    {
+      "id": 4,
+      "nome": "Carolina Raquel da Rocha",
+      "sexo": "F",
+      "idade": 30,
+      "hobby": "Jardinagem",
+      "datanascimento": "03/12/1991"
+    },
+    {
+      "id": 5,
+      "nome": "Maria Maitê Stella",
+      "sexo": "F",
+      "idade": 21,
+      "hobby": "Ciclismo",
+      "datanascimento": "21/07/2000"
+    },
+    {
+      "id": 7,
+      "nome": "César Nathan Assis Alterado",
+      "sexo": "M",
+      "idade": 30,
+      "hobby": "Musculação",
+      "datanascimento": "17/02/1991"
+    }
+  ]
+}
