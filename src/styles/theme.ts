@@ -24,12 +24,14 @@ export default {
     purple_light: '#b83fd9',
     purple_opaque: '#9748a3',
     purple_dark: '#a75ef1',
+    purple_dark_2: '#7d44ad',
 
     purple_blue: '#5e68d7',
     blue_contrast: '#00f0ee',
 
     pink: '#e978e7',
     pink_opaque: '#dd6edd',
+    pink_dark: '#95529a',
   },
 
   fonts: {

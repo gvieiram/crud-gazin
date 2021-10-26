@@ -31,7 +31,7 @@ export function Home() {
   return (
       <Container>
         <Header
-          title="Developers"
+          title="Desenvolvedores"
         />
 
         <DevelopersList
