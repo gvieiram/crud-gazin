@@ -13,7 +13,7 @@ import {
   Roboto_700Bold,
 } from '@expo-google-fonts/roboto';
 import theme from './src/styles/theme';
-import { Home } from './src/screens/Home';
+import { Routes } from './src/routes';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -35,7 +35,7 @@ export default function App() {
           backgroundColor="transparent"
           translucent
         />
-          <Home />
+          <Routes />
       </PaperProvider>
     </ThemeProvider>
   );
