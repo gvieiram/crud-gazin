@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { api } from '../../services/api';
 import { useNavigation } from '@react-navigation/core';
-import { DevelopersDTO } from '../../dtos/DevelopersDTO';
 import DatePicker from 'react-native-datepicker'
 
 import { Header } from '../../components/Header';
@@ -25,29 +24,12 @@ export function AddDevelopers() {
   const [masChecked, setMasChecked] = useState(false);
   const [femChecked, setFemChecked] = useState(false);
 
+  // const [id, setId] = useState('');
   const [name, setName] = useState('');
   const [age, setAge] = useState('');
   const [hobby, setHobby] = useState('');
   const [sexo, setSexo] = useState('');
   const [dateSelected, setDateSelected] = useState('');
-
-  const [developers, setDevelopers] = useState<DevelopersDTO[]>([]);
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    async function fetchDevelopers() {
-      try {
-        const res = await api.get('/developers');
-        setDevelopers(res.data)
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchDevelopers();
-  }, [])
 
   function handleBack() {
     navigation.goBack();
@@ -59,16 +41,14 @@ export function AddDevelopers() {
     setAge(textRegex);
   }
 
-  const data = {
-    name,
-    age,
-    hobby,
-    sexo,
-    dateSelected
-  };
-
-  function handleNewDev() {
-    console.log(data);
+  function handlePostDeveloper() {
+    api.post('/developers', {
+      nome: name,
+      sexo: sexo,
+      idade: age,
+      hobby: hobby,
+      datanascimento: dateSelected,
+    });
   }
 
   return (
@@ -167,7 +147,7 @@ export function AddDevelopers() {
 
             <Button
               title="Adicionar"
-              onPress={handleNewDev}
+              onPress={handlePostDeveloper}
             />
       </ContentContainer>
     </Container>

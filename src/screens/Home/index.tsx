@@ -28,6 +28,23 @@ export function Home() {
     fetchDevelopers();
   }, [])
 
+  async function getDevelopers() {
+    try {
+      const res = await api.get('/developers');
+      setDevelopers(res.data)
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  function handleDeleteDeveloper(id: number) {
+    api.delete(`/developers/${id}`)
+
+    getDevelopers();
+  }
+
   return (
       <Container>
         <Header
@@ -40,7 +57,7 @@ export function Home() {
             renderItem={({item}) => (
               <Developers
                 data={item}
-                // onPress={() => dispatchFunction(item)}
+                onPress={() => handleDeleteDeveloper(item.id)}
               />
             )}
           />
