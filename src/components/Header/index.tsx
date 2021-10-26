@@ -10,13 +10,14 @@ import {
 
 interface Props extends RectButtonProps {
   title: string;
+  renderBackButton?: boolean;
 }
 
-export function Header({ title, ...rest } : Props) {
+export function Header({ title, renderBackButton, ...rest } : Props) {
  return (
     <Container >
       <HeaderContent>
-        <BackButton {...rest}/>
+        {renderBackButton ? <BackButton {...rest}/> : null}
 
         <HeaderTitle>{title}</HeaderTitle>
       </HeaderContent>
