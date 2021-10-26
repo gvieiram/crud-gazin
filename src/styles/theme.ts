@@ -1,5 +1,12 @@
 export default {
   colors: {
+    white: '#FFFFFF',
+    gray_background: '#E5E5E5',
+    gray_opaque: '#929292',
+    title_item_gray: '#575757',
+    input_text: '#737373',
+    black_title: '#151515',
+
     error_light: '#F83B3A',
     error_main: '#DB0028',
     error_dark: '#A80505',
@@ -12,15 +19,22 @@ export default {
     info_main: '#2196F3',
     info_dark: '#1976D2',
 
-    warning_light: '#FFB74D',
-    warning_main: '#FF9800',
-    warning_dark: '#F57C00',
+    purple: '#5c318f',
+    purple_light: '#b83fd9',
+    purple_opaque: '#9748a3',
+    purple_dark: '#a75ef1',
+
+    purple_blue: '#5e68d7',
+    blue_contrast: '#00f0ee',
+
+    pink: '#e978e7',
+    pink_opaque: '#dd6edd',
   },
 
   fonts: {
-    '300_roboto': 'Roboto_300Light',
-    '400_roboto': 'Roboto_400Regular',
-    '500_roboto': 'Roboto_500Medium',
-    '700_roboto': 'Roboto_700Bold',
+    roboto_300: 'Roboto_300Light',
+    roboto_400: 'Roboto_400Regular',
+    roboto_500: 'Roboto_500Medium',
+    roboto_700: 'Roboto_700Bold',
   },
 };
