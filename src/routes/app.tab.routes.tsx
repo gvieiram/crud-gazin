@@ -5,11 +5,12 @@ import { BlurView } from 'expo-blur';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useTheme } from 'styled-components';
 
-// import IconAdd from '../assets/img/add.svg';
-import IconHome from '../assets/img/home.svg'
+import IconAdd from '../assets/img/add.svg';
+// import IconHome from '../assets/img/home.svg'
 // import IconMore from '../assets/img/more.svg';
-// import IconPerson from '../assets/img/person.svg';
+import IconPerson from '../assets/img/person.svg';
 import { Home } from '../screens/Home';
+import { AddDevelopers } from '../screens/AddDevelopers';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -22,7 +23,7 @@ export function AppTabRoutes() {
         headerShown: false,
         tabBarActiveTintColor: theme.colors.purple,
         tabBarActiveBackgroundColor: theme.colors.pink,
-        tabBarInactiveTintColor: theme.colors.purple_blue,
+        tabBarInactiveTintColor: theme.colors.pink_opaque,
         tabBarBackground: () => <BlurView tint="light" intensity={100} />,
         tabBarShowLabel: false,
 
@@ -59,19 +60,19 @@ export function AppTabRoutes() {
         component={Home}
         options={{
           tabBarIcon: ({ color }) => (
-            <IconHome width={32} height={32} fill={color} />
+            <IconPerson width={32} height={32} fill={color} />
           ),
         }}
       />
-      {/* <Screen
-        name=""
-        component={}
+      <Screen
+        name="AddDevelopers"
+        component={AddDevelopers}
         options={{
           tabBarIcon: ({ color }) => (
             <IconAdd width={32} height={32} fill={color} />
           ),
         }}
-      /> */}
+      />
     </Navigator>
   );
 }

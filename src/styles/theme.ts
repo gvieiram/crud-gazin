@@ -2,6 +2,7 @@ export default {
   colors: {
     white: '#FFFFFF',
     gray_background: '#E5E5E5',
+    gray_line_input: '#F4F5F6',
     gray_opaque: '#929292',
     title_item_gray: '#575757',
     input_text: '#737373',

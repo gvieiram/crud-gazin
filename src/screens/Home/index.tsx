@@ -28,15 +28,10 @@ export function Home() {
     fetchDevelopers();
   }, [])
 
-  function handleBack() {
-    // ToDo
-  }
-
   return (
       <Container>
         <Header
           title="Developers"
-          onPress={handleBack}
         />
 
         <DevelopersList
