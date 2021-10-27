@@ -7,6 +7,7 @@ import { Header } from '../../components/Header';
 import { Input } from '../../components/Input';
 import { Checkbox } from 'react-native-paper';
 import { Alert, View } from 'react-native';
+import { actualDate } from '../../utils/Date';
 
 import {
   Container,
@@ -28,7 +29,7 @@ export function AddDevelopers() {
   const [age, setAge] = useState('');
   const [hobby, setHobby] = useState('');
   const [sexo, setSexo] = useState('');
-  const [dateSelected, setDateSelected] = useState('');
+  const [dateSelected, setDateSelected] = useState(actualDate);
 
   function handleBack() {
     navigation.goBack();
