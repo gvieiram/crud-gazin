@@ -61,7 +61,7 @@ export function AddDevelopers() {
   return (
     <Container>
       <Header
-        title="Adicionar Devs"
+        title="Adicionar Dev"
         onPress={handleBack}
         renderBackButton={true}
         />

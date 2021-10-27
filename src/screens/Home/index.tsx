@@ -10,6 +10,7 @@ import {
 } from './styles';
 import { Developers } from '../../components/Developers';
 import { Alert } from 'react-native';
+import { Load } from '../../components/Load';
 
 export function Home() {
   const navigation = useNavigation();
@@ -30,24 +31,12 @@ export function Home() {
     }
 
     fetchDevelopers();
-  }, [])
-
-  async function getDevelopers() {
-    try {
-      const res = await api.get('/developers');
-      setDevelopers(res.data)
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  }
+  }, [developers])
 
   function handleDeleteDeveloper(id: number) {
     api.delete(`/developers/${id}`)
     .then(() => {
       Alert.alert('', 'Dev deletado com sucesso!');
-      getDevelopers();
     })
     .catch(err => {
       Alert.alert('Oops', 'Não foi possível deletar o dev!');
@@ -61,21 +50,24 @@ export function Home() {
         title="Desenvolvedores"
       />
 
-      <DevelopersList
-        data={developers}
-        keyExtractor={item => String(item.id)}
-        renderItem={({item}) => (
-            <Developers
-            data={item}
-            onPress={() =>
-              navigation.dispatch(
-                CommonActions.navigate('EditDeveloper', {dev: item})
-              )
-            }
-            onButtonPressed={() => handleDeleteDeveloper(item.id)}
-          />
-        )}
-      />
+      {
+        loading ? <Load /> :
+        <DevelopersList
+          data={developers}
+          keyExtractor={item => String(item.id)}
+          renderItem={({item}) => (
+              <Developers
+              data={item}
+              onPress={() =>
+                navigation.dispatch(
+                  CommonActions.navigate('EditDeveloper', {dev: item})
+                )
+              }
+              onButtonPressed={() => handleDeleteDeveloper(item.id)}
+            />
+          )}
+        />
+      }
     </Container>
   )
 }
