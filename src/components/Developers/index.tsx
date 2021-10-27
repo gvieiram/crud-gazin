@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { Text, View } from 'react-native';
 import { RectButtonProps } from 'react-native-gesture-handler';
 
 import { useTheme } from 'styled-components';
@@ -12,7 +12,8 @@ import {
   Age,
   Hobby,
   BirthDate,
-  BirthContainer
+  BirthContainer,
+  Sex
 } from './styles';
 
 interface Props extends RectButtonProps {
@@ -37,6 +38,8 @@ export function Developers({ data, ...rest }: Props) {
 
           <Age>{`${data.idade} Anos`}</Age>
         </BirthContainer>
+
+        <Sex>{`Sexo: ${data.sexo === 'M' ? 'Masculino' : 'Feminino'}`}</Sex>
 
       </Details>
     </Container>

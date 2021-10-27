@@ -4,7 +4,7 @@ import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
 export const Container = styled(RectButton)`
-  height: 110px;
+  height: 115px;
   width: 100%;
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: 10px;
@@ -47,7 +47,7 @@ export const BirthDate = styled.Text`
   font-family: ${({ theme }) => theme.fonts.roboto_300};
   font-size: ${RFValue(11)}px;
   color: ${({ theme }) => theme.colors.black_title};
-  `;
+`;
 
 export const Age = styled.Text`
   width: 50%;
@@ -58,3 +58,8 @@ export const Age = styled.Text`
   right: 30px;
 `;
 
+export const Sex = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.roboto_300};
+  font-size: ${RFValue(11)}px;
+  color: ${({ theme }) => theme.colors.black_title};
+`;

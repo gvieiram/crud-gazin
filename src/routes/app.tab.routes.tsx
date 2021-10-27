@@ -7,10 +7,11 @@ import { useTheme } from 'styled-components';
 
 import IconAdd from '../assets/img/add.svg';
 // import IconHome from '../assets/img/home.svg'
-// import IconMore from '../assets/img/more.svg';
+import IconMore from '../assets/img/more.svg';
 import IconPerson from '../assets/img/person.svg';
 import { Home } from '../screens/Home';
 import { AddDevelopers } from '../screens/AddDevelopers';
+import { EditDeveloper } from '../screens/EditDeveloper';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -70,6 +71,15 @@ export function AppTabRoutes() {
         options={{
           tabBarIcon: ({ color }) => (
             <IconAdd width={32} height={32} fill={color} />
+          ),
+        }}
+      />
+      <Screen
+        name="EditDeveloper"
+        component={EditDeveloper}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <IconMore width={32} height={32} fill={color} />
           ),
         }}
       />
