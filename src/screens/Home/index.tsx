@@ -44,14 +44,15 @@ export function Home() {
   }
 
   function handleDeleteDeveloper(id: number) {
-    try {
-      api.delete(`/developers/${id}`)
-      Alert.alert('', 'Desenvolvedor deletado!')
-
+    api.delete(`/developers/${id}`)
+    .then(() => {
+      Alert.alert('', 'Dev deletado com sucesso!');
       getDevelopers();
-    } catch (error) {
-      console.log(error);
-    }
+    })
+    .catch(err => {
+      Alert.alert('Oops', 'Não foi possível deletar o dev!');
+      console.log(err);
+    });
   }
 
   return (

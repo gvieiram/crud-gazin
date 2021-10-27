@@ -6,7 +6,7 @@ import DatePicker from 'react-native-datepicker'
 import { Header } from '../../components/Header';
 import { Input } from '../../components/Input';
 import { Checkbox } from 'react-native-paper';
-import { View } from 'react-native';
+import { Alert, View } from 'react-native';
 
 import {
   Container,
@@ -47,6 +47,13 @@ export function AddDevelopers() {
       idade: age,
       hobby: hobby,
       datanascimento: dateSelected,
+    })
+    .then(() => {
+      Alert.alert('', 'Dev inserido com sucesso!');
+    })
+    .catch(err => {
+      Alert.alert('Oops', 'Não foi possível inserir o dev!');
+      console.log(err);
     });
   }
 

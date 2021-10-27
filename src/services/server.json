@@ -55,22 +55,6 @@
       "hobby": "Futebol",
       "datanascimento": "16/04/1997",
       "id": 8
-    },
-    {
-      "nome": "Teste",
-      "sexo": "M",
-      "idade": "33",
-      "hobby": "Gol",
-      "datanascimento": "",
-      "id": 9
-    },
-    {
-      "nome": "Teste1000",
-      "sexo": "",
-      "idade": "22",
-      "hobby": "Ler",
-      "datanascimento": "27/10/2021",
-      "id": 10
     }
   ]
 }

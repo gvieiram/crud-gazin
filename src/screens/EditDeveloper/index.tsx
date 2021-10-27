@@ -6,7 +6,7 @@ import DatePicker from 'react-native-datepicker'
 import { Header } from '../../components/Header';
 import { Input } from '../../components/Input';
 import { Checkbox } from 'react-native-paper';
-import { View } from 'react-native';
+import { Alert, View } from 'react-native';
 
 import {
   Container,
@@ -17,6 +17,7 @@ import {
  } from './styles';
 import { useTheme } from 'styled-components';
 import { DevelopersDTO } from '../../dtos/DevelopersDTO';
+import { then } from '../../../metro.config';
 
 interface Params {
   dev: DevelopersDTO;
@@ -54,6 +55,13 @@ export function EditDeveloper() {
       idade: age,
       hobby: hobby,
       datanascimento: dateSelected,
+    })
+    .then(() => {
+      Alert.alert('', 'Dev alterado com sucesso!');
+    })
+    .catch(err => {
+      Alert.alert('Oops', 'Não foi possível alterar o dev!');
+      console.log(err);
     });
   }
 
