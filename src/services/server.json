@@ -55,6 +55,14 @@
       "hobby": "Futebol",
       "datanascimento": "16/04/1997",
       "id": 8
+    },
+    {
+      "nome": "Samantha Meinel Faustino",
+      "sexo": "F",
+      "idade": "23",
+      "hobby": "Ler",
+      "datanascimento": "21/10/2021",
+      "id": 10
     }
   ]
 }

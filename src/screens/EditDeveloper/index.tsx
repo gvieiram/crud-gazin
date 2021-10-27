@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { api } from '../../services/api';
 import { useNavigation, useRoute } from '@react-navigation/core';
-import DatePicker from 'react-native-datepicker'
+import DateTimePicker from '@react-native-community/datetimepicker';
+import { MaterialIcons } from '@expo/vector-icons';
 
 import { Header } from '../../components/Header';
 import { Input } from '../../components/Input';
 import { Checkbox } from 'react-native-paper';
-import { Alert, View } from 'react-native';
+import { actualDate } from '../../utils/Date';
+import { Alert, Platform, View } from 'react-native';
 
 import {
   Container,
@@ -14,10 +16,12 @@ import {
   Title,
   TextCheckbox,
   Button,
+  CalendarContainer,
+  Calendar,
+  SelectedDate,
  } from './styles';
 import { useTheme } from 'styled-components';
 import { DevelopersDTO } from '../../dtos/DevelopersDTO';
-import { then } from '../../../metro.config';
 
 interface Params {
   dev: DevelopersDTO;
@@ -31,12 +35,15 @@ export function EditDeveloper() {
 
   const [masChecked, setMasChecked] = useState(dev.sexo === 'M' ? true : false);
   const [femChecked, setFemChecked] = useState(dev.sexo === 'F' ? true : false);
+  const [showDatePicker, setShowDatePicker] = useState(false);
 
   const [name, setName] = useState(dev.nome);
   const [age, setAge] = useState(dev.idade);
   const [hobby, setHobby] = useState(dev.hobby);
   const [sexo, setSexo] = useState('');
-  const [dateSelected, setDateSelected] = useState(dev.datanascimento);
+  const [dateSelected, setDateSelected] = useState(new Date());
+
+  const formattedDate = actualDate(dateSelected);
 
   function handleBack() {
     navigation.goBack();
@@ -54,7 +61,7 @@ export function EditDeveloper() {
       sexo: sexo,
       idade: age,
       hobby: hobby,
-      datanascimento: dateSelected,
+      datanascimento: formattedDate,
     })
     .then(() => {
       Alert.alert('', 'Dev alterado com sucesso!');
@@ -64,6 +71,20 @@ export function EditDeveloper() {
       console.log(err);
     });
   }
+
+  const handleToggleDatePicker = useCallback(() => {
+    setShowDatePicker(state => !state);
+  }, []);
+
+  const handleDateChanged = useCallback((event: any, date: Date | undefined) => {
+    if (Platform.OS === 'android') {
+      setShowDatePicker(false);
+
+      if (date) {
+        setDateSelected(date);
+      }
+    }
+  }, []);
 
   return (
     <Container>
@@ -140,24 +161,29 @@ export function EditDeveloper() {
               value={hobby}
             />
 
-            <Title>Data de Nascimento</Title>
-            <DatePicker
-              format="DD/MM/YYYY"
-              date={dateSelected}
-              onDateChange={(date) => setDateSelected(date)}
-              maxDate={new Date()}
-              customStyles={{
-                dateInput: {
-                  borderColor: 'transparent',
-                  alignItems: 'flex-start',
-                },
-                dateText: {
-                  color: theme.colors.purple_blue,
-                  fontFamily: theme.fonts.roboto_500,
-                  fontSize: 15,
-                }
-              }}
-            />
+            <CalendarContainer>
+              <Title>Data de Nascimento</Title>
+
+              <Calendar
+                activeOpacity={0.7}
+                onPress={handleToggleDatePicker}
+              >
+                <SelectedDate>{formattedDate}</SelectedDate>
+                <MaterialIcons
+                  name="event"
+                  size={28}
+                  color={theme.colors.purple_blue}
+                  />
+              </Calendar>
+
+              { showDatePicker &&
+                <DateTimePicker
+                  value={dateSelected}
+                  mode="date"
+                  onChange={handleDateChanged}
+                  maximumDate={new Date()}
+                />}
+            </CalendarContainer>
 
             <Button
               title="Alterar"
