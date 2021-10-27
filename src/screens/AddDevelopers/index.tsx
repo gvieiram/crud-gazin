@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { api } from '../../services/api';
 import { useNavigation } from '@react-navigation/core';
 import DatePicker from 'react-native-datepicker'
@@ -24,7 +24,6 @@ export function AddDevelopers() {
   const [masChecked, setMasChecked] = useState(false);
   const [femChecked, setFemChecked] = useState(false);
 
-  // const [id, setId] = useState('');
   const [name, setName] = useState('');
   const [age, setAge] = useState('');
   const [hobby, setHobby] = useState('');

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Text, View } from 'react-native';
-import { RectButtonProps } from 'react-native-gesture-handler';
+import { GestureResponderEvent, TouchableOpacityProps, View } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 
 import { useTheme } from 'styled-components';
 import { DevelopersDTO } from '../../dtos/DevelopersDTO';
@@ -13,35 +13,45 @@ import {
   Hobby,
   BirthDate,
   BirthContainer,
-  Sex
+  Sex,
+  Button
 } from './styles';
 
-interface Props extends RectButtonProps {
+interface Props extends TouchableOpacityProps {
   data: DevelopersDTO;
-  onPress?: ((pointerInside: boolean) => void) | undefined;
+  onButtonPressed: ((event: GestureResponderEvent) => void) | undefined;
 }
 
-export function Developers({ data, ...rest }: Props) {
+export function Developers({ data, onButtonPressed, ...rest }: Props) {
   const theme = useTheme();
 
   return (
-    <Container rippleColor={theme.colors.gray_opaque} {...rest}>
-      <Details>
-        <Name>{data.nome}</Name>
+    <View style={{flexDirection: 'row', alignItems: 'center', width: '100%', justifyContent: 'space-between'}}>
+      <Container activeOpacity={0.7} {...rest}>
+        <Details>
+          <Name>{data.nome}</Name>
 
-        <Hobby>{`Hobby: ${data.hobby}`}</Hobby>
+          <Hobby>{`Hobby: ${data.hobby}`}</Hobby>
 
-        <BirthContainer>
-          <BirthDate>
-          {`Nascido(a) em ${data.datanascimento}`}
-          </BirthDate>
+          <BirthContainer>
+            <BirthDate>
+            {`Nascido(a) em ${data.datanascimento}`}
+            </BirthDate>
 
-          <Age>{`${data.idade} Anos`}</Age>
-        </BirthContainer>
+            <Age>{`${data.idade} Anos`}</Age>
+          </BirthContainer>
 
-        <Sex>{`Sexo: ${data.sexo === 'M' ? 'Masculino' : 'Feminino'}`}</Sex>
+          <Sex>{`Sexo: ${data.sexo === 'M' ? 'Masculino' : 'Feminino'}`}</Sex>
 
-      </Details>
-    </Container>
+        </Details>
+      </Container>
+
+      <Button activeOpacity={0.7} onPress={onButtonPressed}>
+        <MaterialIcons
+          name="delete-outline" color={theme.colors.error_light} size={24}
+        />
+      </Button>
+    </View>
+
   );
 };

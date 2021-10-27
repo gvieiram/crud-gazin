@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { api } from '../../services/api';
-import { useNavigation } from '@react-navigation/core';
+import { useNavigation, useRoute } from '@react-navigation/core';
 import DatePicker from 'react-native-datepicker'
 
 import { Header } from '../../components/Header';
@@ -16,20 +16,26 @@ import {
   Button,
  } from './styles';
 import { useTheme } from 'styled-components';
+import { DevelopersDTO } from '../../dtos/DevelopersDTO';
+
+interface Params {
+  dev: DevelopersDTO;
+}
 
 export function EditDeveloper() {
   const navigation = useNavigation();
   const theme = useTheme();
+  const route = useRoute();
+  const { dev } = route.params as Params;
 
-  const [masChecked, setMasChecked] = useState(false);
-  const [femChecked, setFemChecked] = useState(false);
+  const [masChecked, setMasChecked] = useState(dev.sexo === 'M' ? true : false);
+  const [femChecked, setFemChecked] = useState(dev.sexo === 'F' ? true : false);
 
-  const [id, setId] = useState('');
-  const [name, setName] = useState('');
-  const [age, setAge] = useState('');
-  const [hobby, setHobby] = useState('');
+  const [name, setName] = useState(dev.nome);
+  const [age, setAge] = useState(dev.idade);
+  const [hobby, setHobby] = useState(dev.hobby);
   const [sexo, setSexo] = useState('');
-  const [dateSelected, setDateSelected] = useState('');
+  const [dateSelected, setDateSelected] = useState(dev.datanascimento);
 
   function handleBack() {
     navigation.goBack();
@@ -41,14 +47,8 @@ export function EditDeveloper() {
     setAge(textRegex);
   }
 
-  function regexId(text: string) {
-    const textRegex = text.replace(/[^0-9]/g, '');
-
-    setId(textRegex);
-  }
-
   function handleEditDeveloper() {
-    api.put(`/developers/${id}`, {
+    api.put(`/developers/${dev.id}`, {
       nome: name,
       sexo: sexo,
       idade: age,
@@ -68,15 +68,6 @@ export function EditDeveloper() {
         <ContentContainer
           showsVerticalScrollIndicator={false}
         >
-
-            <Title>ID</Title>
-            <Input
-              iconName="person"
-              placeholder="Id"
-              keyboardType="numeric"
-              onChangeText={(id) => regexId(id)}
-              value={id}
-            />
 
             <Title>Nome</Title>
             <Input

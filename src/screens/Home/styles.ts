@@ -4,7 +4,7 @@ import { DevelopersDTO } from '../../dtos/DevelopersDTO';
 
 export const Container = styled.View`
   flex: 1;
-  background-color: ${({ theme }) => theme.colors.gray_background}
+  background-color: ${({ theme }) => theme.colors.gray_background};
 `;
 
 export const DevelopersList = styled(FlatList as new () => FlatList<DevelopersDTO>).attrs({

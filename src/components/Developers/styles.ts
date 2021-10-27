@@ -1,11 +1,11 @@
+import { TouchableOpacity } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 import styled from 'styled-components/native';
 
-export const Container = styled(RectButton)`
-  height: 115px;
-  width: 100%;
+export const Container = styled(TouchableOpacity)`
+  width: 94%;
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: 10px;
 
@@ -24,6 +24,7 @@ export const Name = styled.Text`
   font-family: ${({ theme }) => theme.fonts.roboto_500};
   font-size: ${RFValue(20)}px;
   color: ${({ theme }) => theme.colors.black_title};
+  flex-wrap: wrap;
 
   margin-bottom: 6px;
 `;
@@ -62,4 +63,9 @@ export const Sex = styled.Text`
   font-family: ${({ theme }) => theme.fonts.roboto_300};
   font-size: ${RFValue(11)}px;
   color: ${({ theme }) => theme.colors.black_title};
+`;
+
+export const Button = styled(TouchableOpacity)`
+  margin-left: 5px;
+  padding-bottom: 10px;
 `;
