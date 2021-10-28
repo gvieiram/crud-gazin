@@ -35,6 +35,7 @@ export function EditDeveloper() {
 
   const [masChecked, setMasChecked] = useState(dev.sexo === 'M' ? true : false);
   const [femChecked, setFemChecked] = useState(dev.sexo === 'F' ? true : false);
+  const [undefinedSexChecked, setUndefinedSexChecked] = useState(dev.sexo === 'U' ? true : false);
   const [showDatePicker, setShowDatePicker] = useState(false);
 
   const [name, setName] = useState(dev.nome);
@@ -119,7 +120,7 @@ export function EditDeveloper() {
                   setMasChecked(!masChecked);
                   setSexo('M');
                 }}
-                disabled={femChecked ? true : false}
+                disabled={femChecked || undefinedSexChecked ? true : false}
               />
               <TextCheckbox>Masculino</TextCheckbox>
             </View>
@@ -136,11 +137,27 @@ export function EditDeveloper() {
                   setFemChecked(!femChecked);
                   setSexo('F');
                 }}
-                disabled={masChecked ? true : false}
+                disabled={masChecked || undefinedSexChecked ? true : false}
               />
               <TextCheckbox>Feminino</TextCheckbox>
             </View>
 
+            <View style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+
+              }}>
+              <Checkbox
+                status={undefinedSexChecked ? 'checked' : 'unchecked'}
+                color={theme.colors.purple}
+                onPress={() => {
+                  setUndefinedSexChecked(!undefinedSexChecked);
+                  setSexo('U');
+                }}
+                disabled={masChecked || femChecked ? true : false}
+              />
+              <TextCheckbox>Prefiro não Informar</TextCheckbox>
+            </View>
 
             <Title>Idade</Title>
             <Input

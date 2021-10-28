@@ -25,6 +25,26 @@ interface Props extends TouchableOpacityProps {
 export function Developers({ data, onButtonPressed, ...rest }: Props) {
   const theme = useTheme();
 
+  function setSex(sex: string) {
+    if (sex === 'M') {
+      return 'Masculino';
+    } else if (sex === 'F') {
+      return 'Feminino';
+    } else {
+      return 'Não informado';
+    }
+  }
+
+  function setBornBySex(sex: string) {
+    if (sex === 'M') {
+      return 'Nascido'
+    } else if (sex === 'F') {
+      return 'Nascida'
+    } else {
+      return 'Nascido(a)'
+    }
+  }
+
   return (
     <View style={{flexDirection: 'row', alignItems: 'center', width: '100%', justifyContent: 'space-between'}}>
       <Container activeOpacity={0.7} {...rest}>
@@ -35,13 +55,13 @@ export function Developers({ data, onButtonPressed, ...rest }: Props) {
 
           <BirthContainer>
             <BirthDate>
-            {`Nascido(a) em ${data.datanascimento}`}
+            {`${setBornBySex(data.sexo)} em ${data.datanascimento}`}
             </BirthDate>
 
             <Age>{`${data.idade} Anos`}</Age>
           </BirthContainer>
 
-          <Sex>{`Sexo: ${data.sexo === 'M' ? 'Masculino' : 'Feminino'}`}</Sex>
+          <Sex>{`Sexo: ${setSex(data.sexo)}`}</Sex>
 
         </Details>
       </Container>
