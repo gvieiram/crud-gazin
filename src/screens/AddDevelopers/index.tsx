@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { api } from '../../services/api';
 import { useNavigation } from '@react-navigation/core';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -8,7 +8,7 @@ import { Header } from '../../components/Header';
 import { Input } from '../../components/Input';
 import { Checkbox } from 'react-native-paper';
 import { Alert, Platform, View } from 'react-native';
-import { actualDate } from '../../utils/Date';
+import { actualDate, idade } from '../../utils/Date';
 
 import {
   Container,
@@ -43,11 +43,11 @@ export function AddDevelopers() {
     navigation.goBack();
   }
 
-  function onChangedText(text: string) {
-    const textRegex = text.replace(/[^0-9]/g, '');
+  useEffect(() => {
+    const setIdade = idade(dateSelected);
+    setAge(setIdade);
 
-    setAge(textRegex);
-  }
+  }, [dateSelected]);
 
   function handlePostDeveloper() {
     api.post('/developers', {
@@ -151,17 +151,6 @@ export function AddDevelopers() {
               />
               <TextCheckbox>Prefiro não Informar</TextCheckbox>
             </View>
-
-
-            <Title>Idade</Title>
-            <Input
-              iconName="plus-one"
-              placeholder="Idade"
-              keyboardType="numeric"
-              maxLength={3}
-              onChangeText={(text) => onChangedText(text)}
-              value={age}
-            />
 
             <Title>Hobby</Title>
             <Input
