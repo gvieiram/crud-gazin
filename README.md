@@ -69,6 +69,11 @@ Dentro do projeto vá ate `src`>`services`>`api.ts` e na linha 4, altere de `bas
 
 Não sabe qual o seu IP? [Veja com descobrir aqui](docs/findIP.md)
 
+Agora que você já configurou a API com seu IP, basta executa-lá:
+
+```bash
+yarn api
+```
 
 Pronto agora você já pode rodar o projeto :tada:
 
