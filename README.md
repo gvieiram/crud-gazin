@@ -65,7 +65,9 @@ cd suaPasta/crud-gazin
 yarn
 ```
 
-Dentro do projeto vá ate `src`>`services`>`api.ts` e na linha 4, altere de `baseURL: 'http://localhost:3333'` para `baseURL: 'http://seuIP:3333'`.
+Dentro do projeto vá ate `src`>`services`>`api.ts` e na linha 3, altere de `const ip = '192.168.1.11'` com o seu ip.
+
+Agora na raiz do projeto terá um arquivo chamado de `package.json`, na linha 8 troque o ip `192.168.1.11` pelo seu
 
 Não sabe qual o seu IP? [Veja com descobrir aqui](docs/findIP.md)
 
