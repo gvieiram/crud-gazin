@@ -65,13 +65,13 @@ cd suaPasta/crud-gazin
 yarn
 ```
 
+> Para os próximos passos será preciso do seu IP, não sabe qual o seu IP? [Veja com descobrir aqui](docs/findIP.md)
+
 Dentro do projeto vá ate `src`>`services`>`api.ts` e na linha 3, altere de `const ip = '192.168.1.11'` com o seu ip.
 
 Agora na raiz do projeto terá um arquivo chamado de `package.json`, na linha 8 troque o ip `192.168.1.11` pelo seu
 
-Não sabe qual o seu IP? [Veja com descobrir aqui](docs/findIP.md)
-
-Agora que você já configurou a API com seu IP, basta executa-lá:
+Você já configurou a API com seu IP, basta executa-lá:
 
 ```bash
 yarn api
