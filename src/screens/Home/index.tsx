@@ -9,7 +9,7 @@ import {
  DevelopersList,
 } from './styles';
 import { Developers } from '../../components/Developers';
-import { Alert } from 'react-native';
+import { Alert, Text, View } from 'react-native';
 import { Load } from '../../components/Load';
 
 export function Home() {
@@ -17,6 +17,7 @@ export function Home() {
 
   const [developers, setDevelopers] = useState<DevelopersDTO[]>([]);
   const [loading, setLoading] = useState(true)
+  const [notConnectedToServer, setNotConnectedToServer] = useState(false)
 
   useEffect(() => {
     async function fetchDevelopers() {
@@ -24,6 +25,7 @@ export function Home() {
         const res = await api.get('/developers');
         setDevelopers(res.data)
       } catch (error) {
+        setNotConnectedToServer(true);
         console.log(error);
       } finally {
         setLoading(false);
@@ -44,11 +46,25 @@ export function Home() {
     });
   }
 
+  const NotConnectToServerMessage = () => {
+    return(
+        <View style={{
+          flex: 1,
+          justifyContent: 'flex-end',
+          alignItems: 'center',
+        }}>
+          <Text>Não foi possível conectar ao servidor</Text>
+        </View>
+    )
+  }
+
   return (
     <Container>
       <Header
         title="Desenvolvedores"
       />
+
+      {notConnectedToServer ? NotConnectToServerMessage() : null}
 
       {
         loading ? <Load /> :
@@ -64,6 +80,7 @@ export function Home() {
                 )
               }
               onButtonPressed={() => handleDeleteDeveloper(item.id)}
+              testID={item.nome}
             />
           )}
         />
